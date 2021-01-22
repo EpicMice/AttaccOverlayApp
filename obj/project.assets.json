@@ -60,6 +60,12 @@
           }
         }
       },
+      "JavaScriptEngineSwitcher.V8.Native.linux-x64/3.9.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.ClearScript.V8.Native.linux-x64": "7.0.0"
+        }
+      },
       "JavaScriptEngineSwitcher.V8.Native.win-x64/3.9.0": {
         "type": "package",
         "dependencies": {
@@ -97,6 +103,15 @@
         },
         "runtime": {
           "lib/net5.0/ClearScript.V8.dll": {}
+        }
+      },
+      "Microsoft.ClearScript.V8.Native.linux-x64/7.0.0": {
+        "type": "package",
+        "runtimeTargets": {
+          "runtimes/linux-x64/native/ClearScriptV8.linux-x64.so": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          }
         }
       },
       "Microsoft.ClearScript.V8.Native.win-x64/7.0.0": {
@@ -724,6 +739,22 @@
         "v8-license.txt"
       ]
     },
+    "JavaScriptEngineSwitcher.V8.Native.linux-x64/3.9.0": {
+      "sha512": "e6TLjnr7STwegQC2scZIbwQ7FrLwBibASoYFcwX9UBXOlk2iihXm+mXxCfis2U4EVcVTFrQpgjcALRMkFjssdg==",
+      "type": "package",
+      "path": "javascriptengineswitcher.v8.native.linux-x64/3.9.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "clearscript-license.txt",
+        "icon.png",
+        "javascriptengineswitcher.v8.native.linux-x64.3.9.0.nupkg.sha512",
+        "javascriptengineswitcher.v8.native.linux-x64.nuspec",
+        "readme.txt",
+        "v8-license.txt"
+      ]
+    },
     "JavaScriptEngineSwitcher.V8.Native.win-x64/3.9.0": {
       "sha512": "NOq8sq66hw9ny+v6G5kya++px5CcBQMoubCsRVvNnZ8YSKY1WfGOWUNUX3cUMsiOf49iZ/iQWsv8ZyyfbRCn6g==",
       "type": "package",
@@ -809,6 +840,25 @@
         "licenses/V8/LICENSE.v8",
         "microsoft.clearscript.v8.7.0.0.nupkg.sha512",
         "microsoft.clearscript.v8.nuspec"
+      ]
+    },
+    "Microsoft.ClearScript.V8.Native.linux-x64/7.0.0": {
+      "sha512": "hVBAvdNDCP3FO3MFKxiqYki7e00syFyWphQlFecA9gbiKGC7w+cozTrqmgUoPIALqg5tAxf+BDElymspI1bvjA==",
+      "type": "package",
+      "path": "microsoft.clearscript.v8.native.linux-x64/7.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "License.txt",
+        "images/ClearScript.png",
+        "licenses/ClearScript/License.txt",
+        "licenses/V8/LICENSE",
+        "licenses/V8/LICENSE.fdlibm",
+        "licenses/V8/LICENSE.strongtalk",
+        "licenses/V8/LICENSE.v8",
+        "microsoft.clearscript.v8.native.linux-x64.7.0.0.nupkg.sha512",
+        "microsoft.clearscript.v8.native.linux-x64.nuspec",
+        "runtimes/linux-x64/native/ClearScriptV8.linux-x64.so"
       ]
     },
     "Microsoft.ClearScript.V8.Native.win-x64/7.0.0": {
@@ -2672,6 +2722,7 @@
     "net5.0": [
       "JavaScriptEngineSwitcher.Extensions.MsDependencyInjection >= 3.3.0",
       "JavaScriptEngineSwitcher.V8 >= 3.9.0",
+      "JavaScriptEngineSwitcher.V8.Native.linux-x64 >= 3.9.0",
       "JavaScriptEngineSwitcher.V8.Native.win-x64 >= 3.9.0",
       "Newtonsoft.Json >= 12.0.3",
       "React.AspNet >= 5.2.11"
@@ -2721,6 +2772,10 @@
             "version": "[3.3.0, )"
           },
           "JavaScriptEngineSwitcher.V8": {
+            "target": "Package",
+            "version": "[3.9.0, )"
+          },
+          "JavaScriptEngineSwitcher.V8.Native.linux-x64": {
             "target": "Package",
             "version": "[3.9.0, )"
           },
