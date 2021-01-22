@@ -1,17 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using React.AspNet;
 using JavaScriptEngineSwitcher.V8;
 using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
+using SessionHandler;
 
 namespace attaccoverlay
 {
@@ -30,8 +26,10 @@ namespace attaccoverlay
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDistributedMemoryCache();
             services.AddJsEngineSwitcher(options => options.DefaultEngineName = V8JsEngine.EngineName).AddV8();
+            services.AddSingleton<SessionManager>();
             services.AddReact();
-            services.AddRazorPages();
+            services.AddRazorPages(); 
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,6 +67,8 @@ namespace attaccoverlay
             app.MapWhen(context => context.Request.Path.Value.EndsWith(".css"),
             appBuilder => appBuilder.UseStaticFiles());
 
+            app.MapWhen(context => context.Request.Path.Value.EndsWith(".ico"),
+            appBuilder => appBuilder.UseStaticFiles());
 
             app.UseRouting();
 
@@ -77,6 +77,9 @@ namespace attaccoverlay
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "Default", pattern: "{controller=Home}/{action}");
+                endpoints.MapControllers();
                 endpoints.MapRazorPages();
             });
 

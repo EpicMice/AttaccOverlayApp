@@ -640,6 +640,19 @@
         "compile": {
           "ref/netstandard1.3/System.Threading.Tasks.dll": {}
         }
+      },
+      "SessionHandler/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "compile": {
+          "bin/placeholder/SessionHandler.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SessionHandler.dll": {}
+        }
       }
     }
   },
@@ -2716,6 +2729,11 @@
         "system.threading.tasks.4.0.11.nupkg.sha512",
         "system.threading.tasks.nuspec"
       ]
+    },
+    "SessionHandler/1.0.0": {
+      "type": "project",
+      "path": "../SessionHandler/SessionHandler.csproj",
+      "msbuildProject": "../SessionHandler/SessionHandler.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -2725,7 +2743,8 @@
       "JavaScriptEngineSwitcher.V8.Native.linux-x64 >= 3.9.0",
       "JavaScriptEngineSwitcher.V8.Native.win-x64 >= 3.9.0",
       "Newtonsoft.Json >= 12.0.3",
-      "React.AspNet >= 5.2.11"
+      "React.AspNet >= 5.2.11",
+      "SessionHandler >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -2754,7 +2773,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Home PC\\WebLib\\SessionHandler\\SessionHandler.csproj": {
+              "projectPath": "C:\\Users\\Home PC\\WebLib\\SessionHandler\\SessionHandler.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

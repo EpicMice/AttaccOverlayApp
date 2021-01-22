@@ -24,7 +24,7 @@ namespace attaccoverlay
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseUrls("https://*:443", "https://*:80");
+                 //   webBuilder.UseUrls("https://*:443", "https://*:80");
                     webBuilder.UseStartup<Startup>();
                 });
     }

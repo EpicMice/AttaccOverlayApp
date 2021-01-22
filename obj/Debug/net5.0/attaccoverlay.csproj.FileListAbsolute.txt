@@ -55,3 +55,8 @@ C:\Users\Home PC\WebLib\AttaccOverlayApp\bin\Debug\net5.0\React.AspNet.Middlewar
 C:\Users\Home PC\WebLib\AttaccOverlayApp\bin\Debug\net5.0\React.Core.dll
 C:\Users\Home PC\WebLib\AttaccOverlayApp\obj\Debug\net5.0\attaccoverlay.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Home PC\WebLib\AttaccOverlayApp\bin\Debug\net5.0\JavaScriptEngineSwitcher.Extensions.MsDependencyInjection.dll
+C:\Users\Home PC\WebLib\AttaccOverlayApp\bin\Debug\net5.0\runtimes\linux-x64\native\ClearScriptV8.linux-x64.so
+C:\Users\Home PC\WebLib\AttaccOverlayApp\bin\Debug\net5.0\SessionHandler\obj\project.assets.json
+C:\Users\Home PC\WebLib\AttaccOverlayApp\bin\Debug\net5.0\SessionHandler\obj\SessionHandler.csproj.nuget.dgspec.json
+C:\Users\Home PC\WebLib\AttaccOverlayApp\bin\Debug\net5.0\SessionHandler.dll
+C:\Users\Home PC\WebLib\AttaccOverlayApp\bin\Debug\net5.0\SessionHandler.pdb
