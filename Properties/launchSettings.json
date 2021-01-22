@@ -7,19 +7,11 @@
       "sslPort": 44305
     }
   },
-  "profiles": {
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
     "attaccoverlay": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
-      "launchBrowser": true,
-      //"applicationUrl": "https://localhost:443;http://localhost:80",
+      "launchBrowser": false,
+      "applicationUrl": "",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

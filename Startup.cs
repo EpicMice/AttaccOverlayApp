@@ -4,10 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using React.AspNet;
+using JavaScriptEngineSwitcher.V8;
+using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
 
 namespace attaccoverlay
 {
@@ -23,6 +27,10 @@ namespace attaccoverlay
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddDistributedMemoryCache();
+            services.AddJsEngineSwitcher(options => options.DefaultEngineName = V8JsEngine.EngineName).AddV8();
+            services.AddReact();
             services.AddRazorPages();
         }
 
@@ -41,12 +49,31 @@ namespace attaccoverlay
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseReact(config=> { });
+
+            app.MapWhen(context => context.Request.Path.Value.StartsWith("/images"),
+            appBuilder => appBuilder.UseStaticFiles());
+
+            app.MapWhen(context => context.Request.Path.Value.EndsWith(".js"),
+            appBuilder => appBuilder.UseStaticFiles());
+
+            app.MapWhen(context => context.Request.Path.Value.Contains("/Attaccv2"),
+            appBuilder => appBuilder.UseStaticFiles());
+
+            app.MapWhen(context => context.Request.Path.Value.EndsWith(".jsx"),
+            appBuilder => appBuilder.UseStaticFiles());
+
+            app.MapWhen(context => context.Request.Path.Value.EndsWith(".map"),
+            appBuilder => appBuilder.UseStaticFiles());
+
+            app.MapWhen(context => context.Request.Path.Value.EndsWith(".css"),
+            appBuilder => appBuilder.UseStaticFiles());
+
 
             app.UseRouting();
 
             app.UseAuthorization();
-                       
+            
 
             app.UseEndpoints(endpoints =>
             {
