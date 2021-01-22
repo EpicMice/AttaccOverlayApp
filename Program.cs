@@ -13,13 +13,16 @@ namespace attaccoverlay
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+
+            var h = CreateHostBuilder(args).Build();
+            h.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.UseUrls("https://*:443", "https://*:80");
                     webBuilder.UseStartup<Startup>();
                 });
     }

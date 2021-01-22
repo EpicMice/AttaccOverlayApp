@@ -19,7 +19,7 @@ namespace attaccoverlay.Pages
 
         public void OnGet()
         {
-
+            Console.WriteLine("received request");
         }
     }
 }
