@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SessionHandler;
+using Microsoft.AspNetCore.Http;
+using System.Net.WebSockets;
 
 namespace attaccoverlay.Controllers
 {
@@ -14,32 +16,17 @@ namespace attaccoverlay.Controllers
     public class HomeController : Controller
     {
 
-        public HomeController()
+        public HomeController(IHttpContextAccessor context)
         {
+
         }
 
         [HttpGet("/")]
         [HttpGet("/{a?}")]
         [HttpGet("/index/{a?}")]
-        public IActionResult MainRoute([FromServices] SessionManager session)
+        public IActionResult MainRoute([FromServices] SessionService sserv)
         {
-            SessionData session_data = default(SessionData);
-            Console.WriteLine(Request.Cookies[nameof(session_data.Session_ID).ToLower()]);
-            session_data = session.CheckSession(Request.Cookies[nameof(session_data.Session_ID).ToLower()], Request.Cookies[nameof(session_data.Token).ToLower()]).Result;
-
-            Console.WriteLine(session_data.Session_ID + ":" + session_data.Token);
-
-            if(session_data.Token== "failed_token")
-            {
-                Console.WriteLine("FAILED");
-            }
-            else
-            {
-                Response.Cookies.Append(nameof(session_data.Session_ID).ToLower(), session_data.Session_ID);
-                Response.Cookies.Append(nameof(session_data.Token).ToLower(), session_data.Token);
-            }
-
-
+           
             //session.CheckSession("bad session", "bad token").Wait();
 
             Console.WriteLine("HOME");
@@ -47,6 +34,24 @@ namespace attaccoverlay.Controllers
 
             return View("/Pages/Index.cshtml");
         }
+
+        //client socket attempting to connect
+        //makes server request
+        //server checks incoming connection with request details / or fails
+        //server pulls stream
+
+        [HttpPost("/receiver/{user}")]
+        public IActionResult Receiver(string user, [FromServices] SessionService sserv, [FromServices] IHttpContextAccessor ica)
+        {
+            if (ica.HttpContext.WebSockets.IsWebSocketRequest)
+            {
+                Console.WriteLine("Retrieving Connection...");
+            }
+
+            return Ok("ok");
+        }
+
+
 
         //other api calls
 

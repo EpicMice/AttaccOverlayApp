@@ -8,6 +8,11 @@ using React.AspNet;
 using JavaScriptEngineSwitcher.V8;
 using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
 using SessionHandler;
+using attaccoverlay.Middleware;
+using System.Net.WebSockets;
+using System.Threading.Tasks;
+using System;
+using System.Threading;
 
 namespace attaccoverlay
 {
@@ -23,12 +28,15 @@ namespace attaccoverlay
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); 
+            services.AddSingleton<SessionManager>();
+            services.AddScoped<SessionService>();
             services.AddDistributedMemoryCache();
             services.AddJsEngineSwitcher(options => options.DefaultEngineName = V8JsEngine.EngineName).AddV8();
-            services.AddSingleton<SessionManager>();
+            services.AddScoped<SocketController>();
             services.AddReact();
             services.AddRazorPages(); 
+
             services.AddMvc();
         }
 
@@ -47,6 +55,7 @@ namespace attaccoverlay
             }
 
             app.UseHttpsRedirection();
+
             app.UseReact(config=> { });
 
             app.MapWhen(context => context.Request.Path.Value.StartsWith("/images"),
@@ -73,7 +82,8 @@ namespace attaccoverlay
             app.UseRouting();
 
             app.UseAuthorization();
-            
+
+            app.UseWebSockets();
 
             app.UseEndpoints(endpoints =>
             {
@@ -82,9 +92,23 @@ namespace attaccoverlay
                 endpoints.MapControllers();
                 endpoints.MapRazorPages();
             });
-
-
-
         }
+
+        private async Task Echo(HttpContext context, WebSocket webSocket)
+        {
+            var buffer = new byte[1024 * 4];
+            WebSocketReceiveResult wsresult = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer),
+            CancellationToken.None);
+            while (!wsresult.CloseStatus.HasValue)
+            {
+                await webSocket.SendAsync(new ArraySegment<byte>(buffer, 0, wsresult.Count), wsresult.MessageType,
+                wsresult.EndOfMessage, CancellationToken.None);
+                wsresult = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+            }
+            await webSocket.CloseAsync(wsresult.CloseStatus.Value, wsresult.CloseStatusDescription,
+            CancellationToken.None);
+        }
+
     }
+
 }
