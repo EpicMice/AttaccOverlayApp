@@ -7,6 +7,14 @@
       "sslPort": 44305
     }
   },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
     "attaccoverlay": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
@@ -16,4 +24,5 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     }
+  }
 }
