@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/gitprojects/attaccoverlay/attaccoverlay.csproj": {}
+    "C:\\Users\\Home PC\\WebLib\\AttaccOverlayApp\\attaccoverlay.csproj": {}
   },
   "projects": {
-    "/gitprojects/attaccoverlay/attaccoverlay.csproj": {
+    "C:\\Users\\Home PC\\WebLib\\AttaccOverlayApp\\attaccoverlay.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/gitprojects/attaccoverlay/attaccoverlay.csproj",
+        "projectUniqueName": "C:\\Users\\Home PC\\WebLib\\AttaccOverlayApp\\attaccoverlay.csproj",
         "projectName": "attaccoverlay",
-        "projectPath": "/gitprojects/attaccoverlay/attaccoverlay.csproj",
-        "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/gitprojects/attaccoverlay/obj/",
+        "projectPath": "C:\\Users\\Home PC\\WebLib\\AttaccOverlayApp\\attaccoverlay.csproj",
+        "packagesPath": "C:\\Users\\Home PC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Home PC\\WebLib\\AttaccOverlayApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/root/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Home PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -55,7 +57,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
