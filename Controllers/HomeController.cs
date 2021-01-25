@@ -39,21 +39,14 @@ namespace attaccoverlay.Controllers
         {
             //session.CheckSession("bad session", "bad token").Wait();
             ViewBag.Request = HttpContext.Request;
-            //pagedata
-            //username
             JObject pagedata = new JObject();
             
             pagedata.Add("login_status", sserv.SessionData.HasKey("username"));
-
+            ViewBag.PageDataMap = pagedata;
             ViewBag.PageData = new HtmlString(pagedata.ToString(Formatting.None));           
 
             return View("/Pages/Index.cshtml");
         }
-
-        //client socket attempting to connect
-        //makes server request
-        //server checks incoming connection with request details / or fails
-        //server pulls stream
 
         [HttpPost("/Actions/Login")]
         public async Task<IActionResult> ActionLogin([FromForm] string username,[FromForm] string password, [FromServices] SessionService sserv)
@@ -73,12 +66,16 @@ namespace attaccoverlay.Controllers
             if (request.IsSuccessStatusCode)
             {
                 result = await request.Content.ReadAsStringAsync();
+
+                if (result == "login successful")
+                {
+                    Console.WriteLine(result);
+                    sserv.SessionData.AddValue(nameof(username), username);
+                    sserv.SessionData.AddValue(nameof(password), password);
+                    sserv.SessionManager.CommitSession(sserv.SessionData);
+                }
             }
 
-            sserv.SessionData.AddValue(nameof(username), username);
-            sserv.SessionData.AddValue(nameof(password), password);
-
-            sserv.SessionManager.CommitSession(sserv.SessionData);
             return Ok(result);
         }
 

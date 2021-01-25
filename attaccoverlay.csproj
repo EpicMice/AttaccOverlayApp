@@ -10,12 +10,14 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\js\Classes\Data.js" />
+    <Content Remove="wwwroot\js\Composite\Dashboardpage\Dashboardpage.jsx" />
     <Content Remove="wwwroot\js\Composite\FrontPage.jsx" />
     <Content Remove="wwwroot\js\Composite\Loginpage\Loginpage.jsx" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="wwwroot\js\Classes\Data.js" />
+    <None Include="wwwroot\js\Composite\Dashboardpage\Dashboardpage.jsx" />
     <None Include="wwwroot\js\Composite\Frontpage\Frontpage.jsx" />
     <None Include="wwwroot\js\Composite\Content.jsx" />
     <None Include="wwwroot\js\Composite\Loginpage\Loginpage.jsx" />

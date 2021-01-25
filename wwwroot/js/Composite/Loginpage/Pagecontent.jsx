@@ -63,8 +63,7 @@ function DoLogin() {
     DoPost("/Actions/Login", { username: username, password: password }, (resp) => {
         console.log(resp);
         if (resp.indexOf("login successful") != -1) {
-            window.location.reload();
-            
+            window.location.href = "dashboard"
         }
     });
 

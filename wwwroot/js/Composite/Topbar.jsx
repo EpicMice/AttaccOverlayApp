@@ -63,10 +63,15 @@
                 <div className="logo item">OVERLAY3D</div>
                 <div className="item">HOME</div>
             </div>
-
-            <div onClick={() => {
-                NavigatePage("login");
-            }} className="item button">LOGIN</div>
+            {
+            PageData.login_status ?
+                <div className="item button">LOGOUT</div>
+                :
+                <div onClick={() => {
+                    NavigatePage("login");
+                }} className="item button">LOGIN</div>
+            }
+            
             <div className="background">
             </div>
         </div>
