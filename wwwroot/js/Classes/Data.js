@@ -1,6 +1,30 @@
 ﻿
 var ScopeData = {}
 
+let DoPost = (url, payload, callback) => {
+    var http = new XMLHttpRequest();
+    var params = '';
+    for (let p in payload) {
+        if (params != '') {
+            params += "&";
+        }
+        params += p + "=" + payload[p];
+    }
+    http.timeout = 0;
+    http.open('POST', url, true);
+
+    //Send the proper header information along with the request
+    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+    http.onreadystatechange = function () {//Call a function when the state changes.
+        if (http.readyState == 4 && http.status == 200) {
+            console.log(http)
+            callback(http.responseText);
+        }
+    }
+    http.send(params);
+}
+
 class Signal {
 
     constructor() {
@@ -51,3 +75,7 @@ class SignalEvents {
 }
 
 var EventPass = new SignalEvents();
+
+var NavigatePage = (to) => {
+    window.location.href = "https://"+window.location.host + "/"+to;
+}

@@ -14,9 +14,7 @@ namespace attaccoverlay
     {
         public static void Main(string[] args)
         {
-
             var h = CreateHostBuilder(args).Build();
-
             h.Run();
         }
 

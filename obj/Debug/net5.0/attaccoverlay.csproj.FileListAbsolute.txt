@@ -11,8 +11,6 @@ C:\Users\Home PC\WebLib\AttaccOverlayApp\bin\Debug\net5.0\attaccoverlay.Views.dl
 C:\Users\Home PC\WebLib\AttaccOverlayApp\bin\Debug\net5.0\attaccoverlay.Views.pdb
 C:\Users\Home PC\WebLib\AttaccOverlayApp\obj\Debug\net5.0\attaccoverlay.csprojAssemblyReference.cache
 C:\Users\Home PC\WebLib\AttaccOverlayApp\obj\Debug\net5.0\attaccoverlay.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Home PC\WebLib\AttaccOverlayApp\obj\Debug\net5.0\attaccoverlay.AssemblyInfoInputs.cache
-C:\Users\Home PC\WebLib\AttaccOverlayApp\obj\Debug\net5.0\attaccoverlay.AssemblyInfo.cs
 C:\Users\Home PC\WebLib\AttaccOverlayApp\obj\Debug\net5.0\attaccoverlay.csproj.CoreCompileInputs.cache
 C:\Users\Home PC\WebLib\AttaccOverlayApp\obj\Debug\net5.0\attaccoverlay.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Home PC\WebLib\AttaccOverlayApp\obj\Debug\net5.0\attaccoverlay.RazorAssemblyInfo.cache

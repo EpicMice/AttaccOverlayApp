@@ -31,9 +31,11 @@ namespace attaccoverlay
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); 
             services.AddSingleton<SessionManager>();
             services.AddScoped<SessionService>();
+            services.AddScoped<SocketService>();
+
             services.AddDistributedMemoryCache();
             services.AddJsEngineSwitcher(options => options.DefaultEngineName = V8JsEngine.EngineName).AddV8();
-            services.AddScoped<SocketController>();
+            
             services.AddReact();
             services.AddRazorPages(); 
 
@@ -82,7 +84,7 @@ namespace attaccoverlay
             app.UseRouting();
 
             app.UseAuthorization();
-
+            
             app.UseWebSockets();
 
             app.UseEndpoints(endpoints =>
@@ -92,21 +94,6 @@ namespace attaccoverlay
                 endpoints.MapControllers();
                 endpoints.MapRazorPages();
             });
-        }
-
-        private async Task Echo(HttpContext context, WebSocket webSocket)
-        {
-            var buffer = new byte[1024 * 4];
-            WebSocketReceiveResult wsresult = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer),
-            CancellationToken.None);
-            while (!wsresult.CloseStatus.HasValue)
-            {
-                await webSocket.SendAsync(new ArraySegment<byte>(buffer, 0, wsresult.Count), wsresult.MessageType,
-                wsresult.EndOfMessage, CancellationToken.None);
-                wsresult = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
-            }
-            await webSocket.CloseAsync(wsresult.CloseStatus.Value, wsresult.CloseStatusDescription,
-            CancellationToken.None);
         }
 
     }
