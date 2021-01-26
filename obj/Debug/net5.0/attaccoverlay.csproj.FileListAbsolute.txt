@@ -58,3 +58,4 @@ C:\Users\Home PC\WebLib\AttaccOverlayApp\bin\Debug\net5.0\SessionHandler\obj\pro
 C:\Users\Home PC\WebLib\AttaccOverlayApp\bin\Debug\net5.0\SessionHandler\obj\SessionHandler.csproj.nuget.dgspec.json
 C:\Users\Home PC\WebLib\AttaccOverlayApp\bin\Debug\net5.0\SessionHandler.dll
 C:\Users\Home PC\WebLib\AttaccOverlayApp\bin\Debug\net5.0\SessionHandler.pdb
+C:\Users\Home PC\WebLib\AttaccOverlayApp\obj\Debug\net5.0\Razor\Pages\EditorSpace.cshtml.g.cs

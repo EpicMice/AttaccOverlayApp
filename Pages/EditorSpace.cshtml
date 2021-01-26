@@ -1,0 +1,20 @@
+﻿@page "/dashboard/editor/instance"
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.0/prop-types.js"></script>
+
+@{       
+    if (ViewBag.PageDataMap != null && ViewBag.PageDataMap.ContainsKey("login_status") && ViewBag.PageDataMap["login_status"] == true)
+    {
+        <div id="source_dom_element"></div>
+        @if (ViewBag.PageData != null)
+        {
+            <script>var PageData=@ViewBag.PageData;</script>
+        }
+        //<script src="@Url.Content("/js/Classes/Data.js")" type="text/javascript"></script>
+        <script src="@Url.Content("/js/Composite/Dashboardpage/EditorInstance/EditorInstance.jsx")" type="module"></script>
+    }
+}
+

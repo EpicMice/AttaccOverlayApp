@@ -1,0 +1,3 @@
+﻿Dashboard Sidebar:
+Used to navigate between the overlay editor and the overlay selector, and other addons.
+We can add an asset panel for developers to drag and drop their assets for use in the editor.

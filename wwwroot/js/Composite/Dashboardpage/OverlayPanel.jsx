@@ -12,7 +12,7 @@ class Container extends React.Component {
     }
 
     render() {
-        return <div key={JSON.stringify(this.state)} className="container">{this.state.contents}</div>
+        return <div className="container">{this.state.contents}</div>
     }
 
 }
@@ -25,47 +25,90 @@ class OverlayPiece extends React.Component {
         //edit       
         //share/export
 
+        //TODO Do not enable editor/publish link button if the overlay hasn't been named yet.
+        //Naming an overlay means registering a new overlay on the backend.
+        //A modified unsaved overlay has a yellow status bar.
+        //An unmodified saved overlay has a green status bar.
+
+        //backend should store a history of names for the overlay in case the user wants to undo.
+
         let self = this;
 
-        this.state = { label: "untitled" }
+        this.Actions = {}
+        this.Actions.Rename = "Rename"
+        this.statuses = {}
+        this.statuses.modified = "yellow"
+        this.statuses.saved = "green"
+        this.pendingUpdate = false;
+
+        this.state = { label: "untitled", status: this.statuses.modified }
+
+        this.SaveOverlayChange = () => {
+            //HttpRequest for updating the dashboard backend here.
+        }
 
         this.RenameOverlay = (e) => {
-            if (e.key == "Enter") {
-                self.setState({ label: e.target.value })
-                //submit to endpoint
+            if (e.key == "Enter" && e.target.value) {
+                self.setState({ ...self.state, label: e.target.value, status: self.statuses.saved })
+                self.pendingUpdate = true;
+                //submit to endpoint v
+                self.SaveOverlayChange(self.Actions.Rename)
             }
+        }
+
+        this.OverlayNameInputChange = (e) => {
+            self.setState({ ...self.state, status: self.statuses.modified })
         }
 
         this.DeleteOverlay = (e) => {
             //submit to endpoint
             if (self.props.OnDelete) {
-                self.props.OnDelete(self.props.ItemID)
+                if (confirm("Delete the overlay: " + self.state.label + "?")) {
+                    self.props.OnDelete(self.props.ItemID)
+                }
             }
         }
-        this.ShareOverlay = (e) => { }
+        this.ShareOverlay = (e) => {
+                //TODO get published link
+        }
 
+        this.EditButton = (e) => {
+            if (this.state.status == self.statuses.saved) {
+                EventPass.Signals.SwitchToEditor.Dispatch(true)
+            }
+        }
+
+        this.EditButton = <div id="edit" className="button" onClick={this.EditButton}><i className="fas fa-edit"></i></div>
         this.ShareButton = <div id="share" className="button" onClick={this.ShareOverlay}><i className="fas fa-external-link-alt"></i></div>
         this.DeleteButton = <div id="delete" className="button" onClick={this.DeleteOverlay}><i className="fas fa-times"></i></div>
 
     }
 
     GetInput() {
-        return <input key={this.state.label} onKeyUp={this.RenameOverlay} placeholder={this.state.label} className="namefield"></input>
+        return <input key={this.state.label} onKeyUp={this.RenameOverlay} onChange={this.OverlayNameInputChange} placeholder={this.state.label} className="namefield"></input>
     }
 
     render() {
-        return <div id="OverlayPiece">
+        return <div id="OverlayPiece" >
             <style>
                 #OverlayPiece {"{"}
-                    display: grid;     
-                    grid-template-rows: min-content auto;
+                    display: grid;
+                    grid-template-rows: 8px 1fr min-content auto;
                     grid-template-areas:
-                    'a b'
-                    'c c'
-                    'd d';
+                    'h h h'
+                    '1 1 1'
+                    'a b c'
+                    'd d d';
                     background-color: #808080;
+                    gap: 20px;
                     border-radius: 4px;
                     overflow: hidden;
+                }
+
+                #status {"{"}
+                    grid-column: h;
+                    width: 100%;
+                    height: 100%;
                 }
 
                 #OverlayPiece .button:hover {"{"}
@@ -79,14 +122,6 @@ class OverlayPiece extends React.Component {
                     box-sizing: border-box;
                 }
 
-                #OverlayPiece #delete {"{"}
-                    padding: 10px;
-                    justify-self: end;
-                    grid-area: b;
-                    line-height: 0;
-                    background-color: white;
-                }
-
                 #OverlayPiece #share {"{"}
                     padding: 10px;
                     grid-area: a;
@@ -94,6 +129,23 @@ class OverlayPiece extends React.Component {
                     background-color: white;
                     justify-self: start;
                 }
+
+                #OverlayPiece #edit {"{"}
+                    padding: 10px 8px;
+                    grid-area: b;
+                    line-height: 0;
+                    background-color: white;
+                    justify-self: center;
+                }
+
+                #OverlayPiece #delete {"{"}
+                    padding: 10px;
+                    justify-self: end;
+                    grid-area: c;
+                    line-height: 0;
+                    background-color: white;
+                }
+
                 #OverlayPiece .namefield {"{"}
                     padding: 4px;
                     border: 0px solid black;
@@ -108,6 +160,8 @@ class OverlayPiece extends React.Component {
                     width: calc(100% - 60px);
                 }
             </style>
+            <div id="status" key={this.state.status} style={{ backgroundColor: this.state.status }}></div>
+            {this.EditButton}
             {this.ShareButton}
             {this.DeleteButton}
             {this.GetInput()}
@@ -121,12 +175,16 @@ export class OverlayPanel extends React.Component {
         super(props)
         let self = this      
         this.ItemKeys = []
+        this.ItemList = []
 
         this.OnDelete = (itemID) => {
             //TODO are you sure???;
-            self.ItemKeys.splice(self.ItemKeys.indexOf(itemID), 1)
+            let index = self.ItemKeys.indexOf(itemID);
+            self.ItemKeys.splice(index, 1)
+            self.ItemList.splice(index, 1)
+
             self.Container.setState({
-                contents: self.ItemKeys.map(e => <OverlayPiece key={e} OnDelete={self.OnDelete} ItemID={itemID} />)
+                contents: self.ItemList
             })            
         }
 
@@ -136,10 +194,11 @@ export class OverlayPanel extends React.Component {
 
             let itemID = Math.random() + "";
             self.ItemKeys.push(itemID)
+            self.ItemList.push(<OverlayPiece key={itemID} OnDelete={self.OnDelete} ItemID={itemID}/>)
             //callback here v
             if (self.Container) {
                 self.Container.setState({
-                    contents: self.ItemKeys.map(e => <OverlayPiece key={e} OnDelete={self.OnDelete} ItemID={itemID} />)
+                    contents: self.ItemList
                 });
             }
         }
@@ -158,7 +217,6 @@ export class OverlayPanel extends React.Component {
                     position: relative;
                     width: 100%;
                     height: 100%;
-                    display: grid;
                     grid-template-rows: 75px auto;
                     overflow: hidden;
                 }
@@ -241,15 +299,6 @@ export class OverlayPanel extends React.Component {
         </div>
 
     }
-    /*
-     ////////////////////////////////////////////
-     New Overlay
-
-     Edit
-     Export (Create instance for someone/Publish to market)
-     Delete     
-
-     */
 
     render() {
         return this.Content;
