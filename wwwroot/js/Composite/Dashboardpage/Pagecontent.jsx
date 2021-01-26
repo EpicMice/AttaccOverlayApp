@@ -17,10 +17,12 @@ export class Pagecontent extends React.Component {
                 self.setState({ ...self.state, showDashboard: "display: grid;", showEditor: "display: none;" })
             }
         })
-
     }
 
     render() {
+
+        let EditorSpaceRef = this.state.showEditor != "display: none;" ? <EditorSpace /> : null
+
         return <div id="Pagecontent">
             <style key={JSON.stringify(this.state)}>
                 #EditorSpace {"{"}
@@ -54,7 +56,7 @@ export class Pagecontent extends React.Component {
             </style>
             <div></div>
             <OverlayPanel />
-            <EditorSpace />
+            {EditorSpaceRef}
         </div>
     }
 }
