@@ -1,5 +1,6 @@
 ﻿import {OverlayPanel} from "/js/Composite/Dashboardpage/OverlayPanel.jsx"
 import { EditorSpace } from "/js/Composite/Dashboardpage/EditorSpace.jsx"
+import { AssetPanel } from "/js/Composite/Dashboardpage/AssetPanel.jsx"
 
 
 export class Pagecontent extends React.Component {
@@ -7,6 +8,16 @@ export class Pagecontent extends React.Component {
         super(props)
         let self = this
         this.state = {showDashboard:"display: grid;", showEditor:"display: none;"}
+
+        this.SwipeElements = (dir) => {
+            var container = document.getElementById("DashboardContainer");
+            container.scrollTop = -dir * container.scrollHeight;
+        }
+
+        this.OverlaysNav = <div className="nav" onClick={() => { self.SwipeElements(0) }}>Overlays</div>
+
+        this.AssetNav = <div className="nav" onClick={() => { self.SwipeElements(-1) }}>Assets</div>
+        //this.OtherNav = <div>Other</div>
 
         EventPass.GetSignal("SwitchToEditor")
         EventPass.Signals.SwitchToEditor.Add((showEditor) => {
@@ -49,14 +60,43 @@ export class Pagecontent extends React.Component {
                     overflow: hidden;
                 }
 
+                #Pagecontent #DashboardContainer {"{"}
+                    position: relative;
+                    top: 0px;
+                    height: 100%;
+                    width: 100%;
+                    overflow-y: scroll;
+                }
+
+                #Pagecontent #DashboardContainer {">"} .div {"{"}
+                    height: 100% !important;
+                }
+
+                #Pagecontent .sidebar {"{"}
+                    width: 100%;
+                    margin-top: 100px;
+                }
+
+                #Pagecontent .sidebar {">"} .nav {"{"}
+                    padding: 20px;
+                    text-decoration: underline;
+                }
+
                 .textcontent {"{"}
                     padding-top: 100px;
                     padding: 100px 50px;
                 }
+
             </style>
-            <div></div>
-            <OverlayPanel />
-            {EditorSpaceRef}
+            <div className="sidebar">
+                {this.OverlaysNav}
+                {this.AssetNav}
+            </div>
+            <div id="DashboardContainer">
+                <OverlayPanel />
+                {EditorSpaceRef}
+                <AssetPanel />
+            </div>
         </div>
     }
 }
