@@ -41,51 +41,75 @@ class OverlayPiece extends React.Component {
         this.statuses.saved = "green"
         this.pendingUpdate = false;
 
+        this.CurrentLabel = "untitled"
+
         this.state = { label: "untitled", status: this.statuses.modified }
 
+        this.ShareOverlay = (e) => {
+            //TODO get published link
+            console.log("TODO")
+        }
+
         this.SaveOverlayChange = () => {
+            //TODO
+            console.log("TODO")
             //HttpRequest for updating the dashboard backend here.
         }
 
-        this.RenameOverlay = (e) => {
-            if (e.key == "Enter" && e.target.value) {
-                self.setState({ ...self.state, label: e.target.value, status: self.statuses.saved })
-                self.pendingUpdate = true;
-                //submit to endpoint v
-                self.SaveOverlayChange(self.Actions.Rename)
-            }
-        }
-
-        this.OverlayNameInputChange = (e) => {
-            self.setState({ ...self.state, status: self.statuses.modified })
-        }
-
         this.DeleteOverlay = (e) => {
+            //TODO
             //submit to endpoint
+            console.log("TODO")
             if (self.props.OnDelete) {
                 if (confirm("Delete the overlay: " + self.state.label + "?")) {
                     self.props.OnDelete(self.props.ItemID)
                 }
             }
         }
-        this.ShareOverlay = (e) => {
-                //TODO get published link
-        }
 
-        this.EditButton = (e) => {
-            if (this.state.status == self.statuses.saved) {
-                EventPass.Signals.SwitchToEditor.Dispatch(true)
+        this.DoRename = () => {
+            if (self.CurrentLabel != "untitled") {
+                self.setState({ ...self.state, label: self.CurrentLabel, status: self.statuses.saved })
+                self.pendingUpdate = true;
+                self.SaveOverlayChange(self.Actions.Rename)
+            } else {
+                alert("Please enter a name for the overlay.")
             }
         }
 
-        this.EditButton = <div id="edit" className="button" onClick={this.EditButton}><i className="fas fa-edit"></i></div>
+        this.OverlayNameInputChange = (e) => {
+            self.CurrentLabel = e.target.value
+            self.setState({ ...self.state, status: self.statuses.modified })
+        }
+
+
+        this.EditButton = (e) => {
+            if (this.state.status == self.statuses.saved) {
+                //TODO track current overlay
+                //TODO store recently opened overlays in sidebar history
+                EventPass.Signals.SwitchToEditor.Dispatch(true)
+            } else {
+                alert("Please name the overlay.")
+            }
+        }
+
+        this.OnSubmitName = (e) => {
+            self.DoRename()
+        }
+
+        this.RenameOverlay = (e) => {
+            if (e.key == "Enter" && e.target.value) {
+                self.DoRename()
+            }
+        }
+
+        this.EditButton = <div id="edit" className="button" onClick={this.EditButton}><i className="fas fa-pencil-ruler"></i></div>
         this.ShareButton = <div id="share" className="button" onClick={this.ShareOverlay}><i className="fas fa-external-link-alt"></i></div>
         this.DeleteButton = <div id="delete" className="button" onClick={this.DeleteOverlay}><i className="fas fa-times"></i></div>
-
     }
 
     GetInput() {
-        return <input key={this.state.label} onKeyUp={this.RenameOverlay} onChange={this.OverlayNameInputChange} placeholder={this.state.label} className="namefield"></input>
+        return <div className="namesection"><input className="namefield" key={this.state.label} onKeyUp={this.RenameOverlay} onChange={this.OverlayNameInputChange} placeholder={this.state.label}></input><div className="button"><i className="fas fa-check" onClick={this.OnSubmitName}></i></div></div>
     }
 
     render() {
@@ -146,19 +170,31 @@ class OverlayPiece extends React.Component {
                     background-color: white;
                 }
 
-                #OverlayPiece .namefield {"{"}
+                #OverlayPiece .namesection {"{"}
+                    grid-area: d;
+                    height: min-content;
+                    align-self: end;
+                    margin-bottom: 20px;
+                    width: calc(100% - 60px);
+                    display: flex;  
+                    flex-direction: row;
+                    justify-content: space-evenly;
+                    width: auto;
+                }
+
+                #OverlayPiece .namesection .button {"{"}                
+                    background-color: white;
+                    border-radius: 4px;
+                    padding: 0px 4px;
+                }
+                #OverlayPiece .namesection .namefield {"{"}
                     padding: 4px;
                     border: 0px solid black;
                     outline: none;
                     font-size: 14pt;
                     border-radius: 4px;
-                    grid-area: d;
-                    height: min-content;
-                    align-self: end;
-                    margin-bottom: 20px;
-                    margin-left: 10px;
-                    width: calc(100% - 60px);
                 }
+
             </style>
             <div id="status" key={this.state.status} style={{ backgroundColor: this.state.status }}></div>
             {this.EditButton}

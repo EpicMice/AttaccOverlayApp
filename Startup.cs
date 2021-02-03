@@ -66,9 +66,6 @@ namespace attaccoverlay
             app.MapWhen(context => context.Request.Path.Value.EndsWith(".js"),
             appBuilder => appBuilder.UseStaticFiles());
 
-            app.MapWhen(context => context.Request.Path.Value.Contains("/Attaccv2"),
-            appBuilder => appBuilder.UseStaticFiles());
-
             app.MapWhen(context => context.Request.Path.Value.EndsWith(".jsx"),
             appBuilder => appBuilder.UseStaticFiles());
 

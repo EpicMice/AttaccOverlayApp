@@ -67,6 +67,7 @@ namespace attaccoverlay.Controllers
         {
             Console.WriteLine(username + ":" + password);
             JObject credentials = new JObject();
+
             credentials.Add("username", username);
             credentials.Add("password", password);
 

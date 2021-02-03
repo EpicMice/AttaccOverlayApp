@@ -189,6 +189,7 @@
                     height: 100%;
                     display: grid;
                     grid-auto-flow: row;
+                    grid-auto-rows: 40px;
                     grid-template-columns: repeat(auto-fill, 400px);
                     gap: 10px;
                 }
