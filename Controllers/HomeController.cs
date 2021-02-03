@@ -40,12 +40,26 @@ namespace attaccoverlay.Controllers
             //session.CheckSession("bad session", "bad token").Wait();
             ViewBag.Request = HttpContext.Request;
             JObject pagedata = new JObject();
-            
+
             pagedata.Add("login_status", sserv.SessionData.HasKey("username"));
             ViewBag.PageDataMap = pagedata;
-            ViewBag.PageData = new HtmlString(pagedata.ToString(Formatting.None));           
+            ViewBag.PageData = new HtmlString(pagedata.ToString(Formatting.None));
 
             return View("/Pages/Index.cshtml");
+        }
+
+        [HttpGet("/dashboard/editor/space")]
+        public IActionResult EditorSpace(string page, [FromServices] SessionService sserv)
+        {
+            //session.CheckSession("bad session", "bad token").Wait();
+            ViewBag.Request = HttpContext.Request;
+            JObject pagedata = new JObject();
+
+            pagedata.Add("login_status", sserv.SessionData.HasKey("username"));
+            ViewBag.PageDataMap = pagedata;
+            ViewBag.PageData = new HtmlString(pagedata.ToString(Formatting.None));
+
+            return View("/Pages/EditorSpace.cshtml");
         }
 
         [HttpPost("/Actions/Login")]
@@ -53,6 +67,7 @@ namespace attaccoverlay.Controllers
         {
             Console.WriteLine(username + ":" + password);
             JObject credentials = new JObject();
+
             credentials.Add("username", username);
             credentials.Add("password", password);
 
