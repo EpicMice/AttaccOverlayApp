@@ -36,9 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="SessionHandler">
-      <HintPath>..\SessionHandlerInternal\bin\Release\net5.0\publish\SessionHandler.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\SessionHandler\SessionHandler.csproj" />
   </ItemGroup>
 
 </Project>
