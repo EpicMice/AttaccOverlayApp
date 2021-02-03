@@ -1,24 +1,14 @@
-﻿using attaccoverlay.Pages;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using SessionHandler;
 using Microsoft.AspNetCore.Http;
-using System.Net.WebSockets;
-using System.Threading;
 using attaccoverlay.Middleware;
 using Newtonsoft.Json.Linq;
 using Microsoft.AspNetCore.Html;
 using Newtonsoft.Json;
-using System.Net;
 using System.Text;
 using System.Net.Http;
-using System.IO;
-using System.Net.Http.Headers;
-using ControllerModels;
+using SessionHandler;
 
 namespace attaccoverlay.Controllers
 {

@@ -34,11 +34,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SessionHandler\SessionHandler.csproj" />
+    <Folder Include="wwwroot\js\Composite\Components\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\js\Composite\Components\" />
+    <ProjectReference Include="..\SessionHandler\SessionHandler.csproj" />
   </ItemGroup>
 
 </Project>
