@@ -48,7 +48,7 @@ namespace attaccoverlay.Controllers
             pagedata.Add("login_status", sserv.SessionData.HasKey("username"));
             ViewBag.PageDataMap = pagedata;
             ViewBag.PageData = new HtmlString(pagedata.ToString(Formatting.None));
-
+             
             return View("/Pages/EditorSpace.cshtml");
         }
 
