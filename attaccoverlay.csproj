@@ -5,7 +5,6 @@
     <StartupObject>attaccoverlay.Program</StartupObject>
     <EnableUnsafeBinaryFormatterSerialization>true</EnableUnsafeBinaryFormatterSerialization>
 
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,11 +32,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SessionHandler\SessionHandler.csproj" />
+    <Folder Include="wwwroot\js\Composite\Components\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\js\Composite\Components\" />
+    <Reference Include="SessionHandler">
+      <HintPath>..\SessionHandlerInternal\bin\Release\net5.0\publish\SessionHandler.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
