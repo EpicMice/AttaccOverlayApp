@@ -10,31 +10,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\js\Classes\Data.js" />
-    <Content Remove="wwwroot\js\Composite\Dashboardpage\Dashboardpage.jsx" />
-    <Content Remove="wwwroot\js\Composite\FrontPage.jsx" />
-    <Content Remove="wwwroot\js\Composite\Loginpage\Loginpage.jsx" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\js\Classes\Data.js" />
-    <None Include="wwwroot\js\Composite\Dashboardpage\Dashboardpage.jsx" />
-    <None Include="wwwroot\js\Composite\Frontpage\Frontpage.jsx" />
-    <None Include="wwwroot\js\Composite\Content.jsx" />
-    <None Include="wwwroot\js\Composite\Loginpage\Loginpage.jsx" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="JavaScriptEngineSwitcher.Extensions.MsDependencyInjection" Version="3.3.0" />
     <PackageReference Include="JavaScriptEngineSwitcher.V8" Version="3.9.0" />
     <PackageReference Include="JavaScriptEngineSwitcher.V8.Native.linux-x64" Version="3.9.0" />
     <PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x64" Version="3.9.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="React.AspNet" Version="5.2.11" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\js\Composite\Components\" />
   </ItemGroup>
 
   <ItemGroup>

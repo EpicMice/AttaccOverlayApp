@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DZyN7FLM0AxJDtkQ43BcB8I6VybPb3t7GrMV1N9IEVqjMtEU+evffdyUq9ZvrdGzEWPxzpd0e80EpeURcyQXZg==",
+  "dgSpecHash": "5gqEbr1uiQQKTtZlClokcPptcbq6DKUW/AO+5GaNPHZJqykhuV+D1Lzyz2EToqQUa150mt+g1BgCvrclKZ3VLw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Home PC\\WebLib\\AttaccOverlayApp\\attaccoverlay.csproj",
+  "projectFilePath": "C:\\Users\\Home PC\\WebLib\\AttaccOverlayPlatformGit\\attaccoverlay.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Home PC\\.nuget\\packages\\advancedstringbuilder\\0.1.0\\advancedstringbuilder.0.1.0.nupkg.sha512",
     "C:\\Users\\Home PC\\.nuget\\packages\\javascriptengineswitcher.core\\3.3.0\\javascriptengineswitcher.core.3.3.0.nupkg.sha512",

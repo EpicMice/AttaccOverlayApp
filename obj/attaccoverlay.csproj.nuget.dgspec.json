@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Home PC\\WebLib\\AttaccOverlayApp\\attaccoverlay.csproj": {}
+    "C:\\Users\\Home PC\\WebLib\\AttaccOverlayPlatformGit\\attaccoverlay.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Home PC\\WebLib\\AttaccOverlayApp\\attaccoverlay.csproj": {
+    "C:\\Users\\Home PC\\WebLib\\AttaccOverlayPlatformGit\\attaccoverlay.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Home PC\\WebLib\\AttaccOverlayApp\\attaccoverlay.csproj",
+        "projectUniqueName": "C:\\Users\\Home PC\\WebLib\\AttaccOverlayPlatformGit\\attaccoverlay.csproj",
         "projectName": "attaccoverlay",
-        "projectPath": "C:\\Users\\Home PC\\WebLib\\AttaccOverlayApp\\attaccoverlay.csproj",
+        "projectPath": "C:\\Users\\Home PC\\WebLib\\AttaccOverlayPlatformGit\\attaccoverlay.csproj",
         "packagesPath": "C:\\Users\\Home PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Home PC\\WebLib\\AttaccOverlayApp\\obj\\",
+        "outputPath": "C:\\Users\\Home PC\\WebLib\\AttaccOverlayPlatformGit\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Home PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
