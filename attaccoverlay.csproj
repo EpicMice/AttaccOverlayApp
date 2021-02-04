@@ -4,30 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <StartupObject>attaccoverlay.Program</StartupObject>
     <EnableUnsafeBinaryFormatterSerialization>true</EnableUnsafeBinaryFormatterSerialization>
-
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="wwwroot\js\Composite\Components\**" />
-    <Content Remove="wwwroot\js\Composite\Components\**" />
-    <EmbeddedResource Remove="wwwroot\js\Composite\Components\**" />
-    <None Remove="wwwroot\js\Composite\Components\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="wwwroot\js\RefClasses\Data.js" />
-    <Content Remove="wwwroot\js\Composite\Dashboardpage\Dashboardpage.jsx" />
-    <Content Remove="wwwroot\js\Composite\FrontPage.jsx" />
-    <Content Remove="wwwroot\js\Composite\Loginpage\Loginpage.jsx" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\js\RefClasses\Data.js" />
-    <None Include="wwwroot\js\Composite\Dashboardpage\Dashboardpage.jsx" />
-    <None Include="wwwroot\js\Composite\Frontpage\Frontpage.jsx" />
-    <None Include="wwwroot\js\Composite\Content.jsx" />
-    <None Include="wwwroot\js\Composite\Loginpage\Loginpage.jsx" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="JavaScriptEngineSwitcher.Extensions.MsDependencyInjection" Version="3.3.0" />
