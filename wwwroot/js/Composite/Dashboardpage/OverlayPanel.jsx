@@ -175,17 +175,17 @@ class OverlayPiece extends React.Component {
                     height: min-content;
                     align-self: end;
                     margin-bottom: 20px;
-                    width: calc(100% - 60px);
-                    display: flex;  
+                    margin: 0px 5px 20px 5px;
+                    display: flex;
                     flex-direction: row;
-                    justify-content: space-evenly;
-                    width: auto;
+                    justify-content: space-evenly;            
                 }
 
                 #OverlayPiece .namesection .button {"{"}                
                     background-color: white;
                     border-radius: 4px;
                     padding: 0px 4px;
+                    margin-left: 10px;
                 }
                 #OverlayPiece .namesection .namefield {"{"}
                     padding: 4px;
@@ -272,7 +272,7 @@ export class OverlayPanel extends React.Component {
                     position: relative;
                     background-color: black;
                     display: grid;
-                    grid-template-columns: repeat(auto-fill, minmax(250px, auto));
+                    grid-template-columns: repeat(auto-fill, minmax(min-content, 250px));
                     grid-auto-rows: 250px;
                     gap: 15px;
                     overflow-y: scroll;
