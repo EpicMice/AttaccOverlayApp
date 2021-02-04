@@ -6,6 +6,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.0/prop-types.js"></script>
 
     @{
+        string JS_DATA = "/js/RefClasses/Data.js";
+
         string SourcePath = "";
         if (ViewBag.Request == null)
         {
@@ -24,7 +26,7 @@
                 SourcePath = pathvalues[1] == "" ? "index" : pathvalues[1];
             }
 
-            Console.WriteLine(SourcePath);            
+            Console.WriteLine(SourcePath);
         }
 
         switch (SourcePath.ToLower())
@@ -35,7 +37,7 @@
                 {
                     <script>var PageData=@ViewBag.PageData;</script>
                 }
-                <script src="@Url.Content("/js/Classes/Data.js")" type="text/javascript"></script>
+                <script src="@Url.Content(JS_DATA)" type="text/javascript"></script>
                 <script src="@Url.Content("/js/Composite/Frontpage/Frontpage.jsx")" type="module"></script>
                 break;
 
@@ -45,7 +47,7 @@
                 {
                     <script>var PageData=@ViewBag.PageData;</script>
                 }
-                <script src="@Url.Content("/js/Classes/Data.js")" type="text/javascript"></script>
+                <script src="@Url.Content(JS_DATA)" type="text/javascript"></script>
                 <script src="@Url.Content("/js/Composite/Loginpage/Loginpage.jsx")" type="module"></script>
                 break;
 
@@ -57,7 +59,7 @@
                     {
                         <script>var PageData=@ViewBag.PageData;</script>
                     }
-                    <script src="@Url.Content("/js/Classes/Data.js")" type="text/javascript"></script>
+                    <script src="@Url.Content(JS_DATA)" type="text/javascript"></script>
                     <script src="@Url.Content("/js/Composite/Dashboardpage/Dashboardpage.jsx")" type="module"></script>
                 }
                 else
@@ -67,7 +69,7 @@
                     {
                         <script>var PageData=@ViewBag.PageData;</script>
                     }
-                    <script src="@Url.Content("/js/Classes/Data.js")" type="text/javascript"></script>
+                    <script src="@Url.Content(JS_DATA)" type="text/javascript"></script>
                     <script src="@Url.Content("/js/Composite/Frontpage/Frontpage.jsx")" type="module"></script>
                 }
                 break;
